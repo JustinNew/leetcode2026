@@ -33,7 +33,7 @@ d = defaultdict(set)    # default value is set()
 # To implement max heap, we can negate the values
 import heapq
 
-# Min heap
+# Min heap example
 heap = []
 heapq.heappush(heap, 1)
 heapq.heappush(heap, 2)
