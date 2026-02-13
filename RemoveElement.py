@@ -35,3 +35,18 @@ class Solution:
                 current += 1
 
         return current
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        if len(nums) == 0:
+            return
+
+        current = 0
+        for ndx in range(len(nums)):
+            if nums[ndx] == val:
+                continue
+            else:
+                nums[current] = nums[ndx]
+                current += 1
+
+        return current
