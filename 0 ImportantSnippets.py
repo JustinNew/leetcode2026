@@ -9,6 +9,9 @@ def compare(n1, n2):
     else:
         return 1
 
+# Sorted needs a key
+# cmp_to_key = “turn a compare (two-argument) function into a key (one-argument) function” 
+# so that sorted() can use it. The name is literally “compare → key”.
 nums = [str(num) for num in [3, 30, 34, 5, 9]]
 nums = sorted(nums, key=cmp_to_key(compare))
 print(nums)
@@ -90,6 +93,8 @@ s.endswith('World')
 s.find('World')
 s.count('World')
 s.len
+# Split a string by a delimiter
+'/abc//efg'.split('/') # ['', 'abc', '', 'efg']
 
 # Delete a key from a dictionary
 d = {'a': 1, 'b': 2, 'c': 3}
