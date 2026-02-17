@@ -42,3 +42,31 @@ class Solution:
                     break
                 
         return result
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        # Use two pointers
+
+        n = len(nums)
+        if n == 0:
+            return 0
+
+        left = 0
+        right = 0
+        result = 0
+        current_sum = nums[0]
+        while right < n:
+            if current_sum >= target:
+                if result == 0:
+                    result = right + 1 - left
+                else:
+                    result = min(result, right + 1 - left)
+
+                current_sum -= nums[left]
+                left += 1 
+            else:
+                right += 1
+                if right < n:
+                    current_sum += nums[right]
+
+        return result

@@ -101,6 +101,23 @@ d = {'a': 1, 'b': 2, 'c': 3}
 del d['a']
 print(d)
 
+# Set operations
+s1 = {1, 2, 3}
+s2 = {3, 4, 5}
+s.add(4) # add an element to the set
+s.remove(1) # remove an element from the set, raise an error if the element is not in the set
+s.discard(2) # discard an element from the set, do nothing if the element is not in the set
+s.pop() # remove and return an arbitrary element from the set
+s.clear() # remove all elements from the set
+s.copy() # return a copy of the set
+s.union(s2) # return a new set with all elements from both sets
+s.intersection(s2) # return a new set with all elements that are in both sets
+s.difference(s2) # return a new set with all elements that are in the first set but not in the second set
+s.symmetric_difference(s2) # return a new set with all elements that are in either set but not in both
+s.issubset(s2) # return True if all elements of the first set are in the second set
+s.issuperset(s2) # return True if all elements of the second set are in the first set
+print(s)
+
 # Dictionary key can be tuple.
 # Tuple is immutable, so it can be used as a key in a dictionary.
 # set is immutable, so it can be used as a key in a dictionary.

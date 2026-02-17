@@ -58,3 +58,42 @@ class Solution:
                 return False
 
         return True
+
+# Need to store the completed courses in a set to avoid re-checking the same course.
+# Need to mark the visiting courses to detect cycles.
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        if numCourses == 1:
+            return True
+
+        self.d = {}
+        self.visiting = {}
+        self.completed = {}
+        for (a, b) in prerequisites:
+            if a in self.d:
+                self.d[a].append(b)
+            else:
+                self.d[a] = [b]
+        
+        def dfs(c):
+            if c in self.visiting and self.visiting[c]:
+                return False
+            if c not in self.d or c in self.completed:
+                return True
+
+            self.visiting[c] = True
+            for n in self.d[c]:
+                if not dfs(n):
+                    return False
+            self.visiting[c] = False
+            self.completed[c] = True
+
+            return True
+
+        for c in range(numCourses):
+            if c in self.d:
+                if not dfs(c):
+                    return False
+
+        return True
+        
