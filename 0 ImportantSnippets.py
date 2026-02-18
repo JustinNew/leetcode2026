@@ -93,8 +93,13 @@ s.endswith('World')
 s.find('World')
 s.count('World')
 s.len
+########################################################
+# Pay attention to the split function returning an empty string.
 # Split a string by a delimiter
 '/abc//efg'.split('/') # ['', 'abc', '', 'efg']
+' abc def '.split(' ') # ['', 'abc', 'def', '']
+' abc def '.split() # ['abc', 'def']
+########################################################
 
 # Delete a key from a dictionary
 d = {'a': 1, 'b': 2, 'c': 3}

@@ -45,3 +45,47 @@ class Solution:
                 return False
 
         return self.isValidBST(root.left) and self.isValidBST(root.right)
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+
+        def bstMin(root):
+            if not root.left and not root.right:
+                return root.val
+
+            result = root.val
+            if root.left:
+                result = min(result, bstMin(root.left))
+            if root.right:
+                result = min(result, bstMin(root.right))
+
+            return result
+
+        def bstMax(root):
+            if not root.left and not root.right:
+                return root.val
+
+            result = root.val
+            if root.left:
+                result = max(result, bstMax(root.left))
+            if root.right:
+                result = max(result, bstMax(root.right))
+
+            return result
+
+        def isValid(root):
+            if not root:
+                return True
+            if not root.left and not root.right:
+                return True
+
+            if root.left and root.val <= bstMax(root.left):
+                return False
+            if root.right and root.val >= bstMin(root.right):
+                return False
+            if isValid(root.left) and isValid(root.right):
+                return True
+
+            return False
+        
+        return isValid(root)
