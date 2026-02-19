@@ -6,6 +6,20 @@
 # Key is to use two pointers to find the two numbers that sum to the target value.
 # Sort the array first to avoid duplicates.
 # Very similar to 3Sum problem, only do the first repeated number once.
+
+# Example 1:
+# Input: nums = [-1,2,1,-4], target = 1
+# Output: 2
+# Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+# Example 2:
+# Input: nums = [0,0,0], target = 1
+# Output: 0
+
+# Same as 3Sum
+# Sort array first
+# Skip the first repeated number
+# Then, use two pointers
 from typing import List
 
 class Solution:
