@@ -134,6 +134,14 @@ d[tuple(sorted(s))] = 1
 ord('a')
 ord('0')
 
+# Bit operations
+& # AND
+| # OR
+^ # XOR 1 ^ 0 = 1, 0 ^ 0 = 0, 1 ^ 1 = 0
+~ # NOT ~0 = 1, ~1 = 0
+<< # LEFT SHIFT 1 << 1 = 2, 1 << 2 = 4
+>> # RIGHT SHIFT 1 >> 1 = 0, 1 >> 2 = 0
+
 ########################################################
 # List operations gotchas
 # List append returns None
