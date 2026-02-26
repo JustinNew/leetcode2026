@@ -58,3 +58,41 @@ class Solution:
             return res
 
         return dfs(0)
+
+# My solution
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+
+        # DFS
+        # Use a dictionary to memorize the solve part
+        # Solved part is bottom up
+
+        n = len(s)
+        result = []
+        memo = {i:[] for i in range(n)}
+
+        def dfs(ndx):
+            if ndx == n:
+                return
+
+            for i in range(ndx, n):
+                if s[ndx:i + 1] in wordDict:
+                    if i == n - 1:
+                        memo[ndx].append([s[ndx:]])
+                    else:
+                        dfs(i + 1)
+                        if len(memo[i + 1]) > 0:
+                            for comb in memo[i + 1]:
+                                memo[ndx].append([s[ndx:i + 1]] + comb)
+            
+            return
+
+        dfs(0)
+
+        if len(memo[0]) > 0:
+            for n in memo[0]:
+                t = " ".join(n)
+                if t not in result:
+                    result.append(t)
+
+        return result
