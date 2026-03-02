@@ -32,7 +32,7 @@ class Solution:
                 if s[i - 1] == '(':  # "()" pattern
                     dp[i] = 2 + (dp[i - 2] if i >= 2 else 0)
                 else:
-                    prev = i - dp[i - 1] - 1
+                    prev = i - 1 - dp[i - 1]
                     if prev >= 0 and s[prev] == '(':
                         dp[i] = dp[i - 1] + 2
                         if prev >= 1:
