@@ -95,3 +95,37 @@ class Solution:
                     dfs(grid, i, j)
 
         return self.result
+
+# DFS 
+# 20260303 Solution
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        # DFS 
+        # A matrix to store not visited 0 /visiting -1/visited 1
+        m = len(grid)
+        n = len(grid[0])
+
+        visited = [[0 for j in range(n)] for i in range(m)]
+
+        def dfs(i, j):
+            if i < 0 or i >= m or j < 0 or j >= n:
+                return
+
+            if grid[i][j] == '1' and visited[i][j] == 0:
+                visited[i][j] = -1
+                dfs(i + 1, j)
+                dfs(i - 1, j)
+                dfs(i, j + 1)
+                dfs(i, j - 1)
+                visited[i][j] = 1
+            
+            return
+
+        number = 0
+        for ni in range(m):
+            for nj in range(n):
+                if grid[ni][nj] == '1' and visited[ni][nj] == 0:
+                    number += 1
+                    dfs(ni, nj)
+        
+        return number

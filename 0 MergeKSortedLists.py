@@ -98,3 +98,56 @@ class Solution:
             node.next = l2
         
         return ans.next
+
+# My accepted solution
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        # Merge two linked lists
+        # Do it pairly, until only one left
+
+        def mergeTwoLists(node1, node2):
+            if not node1:
+                return node2
+            if not node2:
+                return node1
+
+            dummy = ListNode()
+            current = dummy
+            while node1 and node2:
+                if node1.val < node2.val:
+                    current.next = node1
+                    node1 = node1.next
+                else:
+                    current.next = node2
+                    node2 = node2.next
+                
+                current = current.next
+            
+            if node1:
+                current.next = node1
+            elif node2:
+                current.next = node2
+
+            return dummy.next
+
+        if not lists:
+            return None
+        if len(lists) == 1:
+            return lists[0]
+
+        while len(lists) > 1:
+            temp = []
+            m = len(lists) // 2
+            for i in range(m):
+                temp.append(mergeTwoLists(lists[2 * i], lists[2 * i + 1]))
+            if len(lists) % 2 == 1:
+                temp.append(lists[-1])
+
+            lists = temp
+
+        return lists[0]

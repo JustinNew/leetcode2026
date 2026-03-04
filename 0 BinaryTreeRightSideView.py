@@ -60,3 +60,29 @@ class Solution:
         dfs_inorder(root, 0)
 
         return result
+
+# 20260303 Solution
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+
+        nodes = [root]
+        result = []
+        while nodes:
+            temp = []
+            for n in nodes:
+                if n.left:
+                    temp.append(n.left)
+                if n.right:
+                    temp.append(n.right)
+            result.append(n.val)
+            nodes = temp
+
+        return result

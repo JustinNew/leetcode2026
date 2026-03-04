@@ -48,8 +48,12 @@ class Solution:
 
         return
 
+########################################################
 # This approach processes the tree in reverse post-order (right → left → root). 
 # It ensures that we directly link the nodes in the desired "linked list" order.
+# DFS, Reverse Post-order traversal
+# Key is to pass self.prev.
+########################################################
 class Solution:
     def __init__(self):
         self.prev = None
@@ -70,3 +74,38 @@ class Solution:
 
         # Update prev to current node
         self.prev = root
+
+# 20260303 Solution
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        if not root:
+            return None
+
+        nodes = []
+        def dfs(node):
+            if not node:
+                return
+            
+            nodes.append(node)
+            if node.left:
+                dfs(node.left)
+            if node.right:
+                dfs(node.right)
+
+            return
+
+        dfs(root)
+        for i in range(len(nodes) - 1):
+            nodes[i].right = nodes[i + 1]
+            nodes[i].left = None
+
+        return
