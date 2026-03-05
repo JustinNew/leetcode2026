@@ -38,3 +38,23 @@ class Solution:
             result = max(result, i - left + 1)
 
         return result
+
+# 20260304 solution
+# Use set
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # Use two pointers
+        alphas = set()
+        end = 0
+        result = 0
+        for front in range(len(s)):
+            if s[front] not in alphas:
+                alphas.add(s[front])
+                result = max(result, len(alphas))
+            else:
+                while s[front] in alphas:
+                    alphas.remove(s[end])
+                    end += 1
+                alphas.add(s[front])
+
+        return result

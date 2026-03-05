@@ -14,3 +14,13 @@ class Solution:
         l = [t for t in s if t.isalnum()]
 
         return l == l[::-1]
+
+# 20260304 solution
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        arr = []
+        for i in s:
+            if i.isalnum():
+                arr.append(i.lower())
+
+        return arr == arr[::-1]
