@@ -36,3 +36,24 @@ class Solution:
         dfs(nums, [])
 
         return result
+
+# 20260305 Solution
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        # DFS
+        # Each step, choose one from the remaining numbers
+
+        result = []
+        def dfs(arr, comb):
+            if len(arr) == 0:
+                result.append(comb)
+                return
+
+            for i in range(len(arr)):
+                dfs(arr[:i] + arr[i+1:], comb + [arr[i]])
+
+            return
+
+        dfs(nums, [])
+
+        return result 

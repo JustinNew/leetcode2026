@@ -30,3 +30,18 @@ class Solution:
             result += new
         
         return result
+
+# 20260305 Solution
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        # DFS
+        # For each step, there are two decisions
+        result = [[]]
+        for n in nums:
+            temp = []
+            for comb in result:
+                temp.append(comb)
+                temp.append(comb + [n])
+            result = temp
+        
+        return result
