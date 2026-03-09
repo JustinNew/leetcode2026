@@ -96,3 +96,34 @@ class Solution:
                     result.append(t)
 
         return result
+
+# 20260308 Solution
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        # DFS + DP
+
+        n = len(s)
+        memo = {}
+        
+        def dfs(ndx):
+            if ndx in memo:
+                return memo[ndx]
+            
+            if ndx == n:
+                return [""]
+
+            result = []
+            for i in range(ndx, n):
+                if s[ndx:i + 1] in wordDict:
+                    tails = dfs(i + 1)
+                    for tail in tails:
+                        if tail == "":
+                            result.append(s[ndx:i + 1])
+                        else:
+                            result.append(s[ndx:i + 1] + " " + tail)
+
+            memo[ndx] = result
+            return result
+        
+        dfs(0)
+        return memo[0]

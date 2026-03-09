@@ -40,3 +40,24 @@ class Solution:
                         result = s[j:i+1]
 
         return result
+
+# 20260308 Solution
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        # DP
+
+        n = len(s)
+        dp = [[False for i in range(n)] for j in range(n)]
+
+        for i in range(n):
+            dp[i][i] = True
+
+        result = s[0]
+        for i in range(1, n):
+            for j in range(i):
+                if s[i] == s[j] and (i - j <= 2 or dp[j + 1][i - 1]):
+                    dp[j][i] = True
+                    if i - j + 1 > len(result):
+                        result = s[j:i + 1]
+
+        return result

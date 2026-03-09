@@ -58,3 +58,26 @@ class Solution:
             return False
 
         return dfs(s)
+
+# 20260306 Solution
+# DPS + DP
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        # DFS + DP
+        memo = {}
+
+        def dfs(n):
+            if n == len(s):
+                return True
+            if n in memo:
+                return memo[n]
+
+            for i in range(n, len(s)):
+                if s[n:i + 1] in wordDict and dfs(i + 1):
+                    memo[n] = True
+                    return True
+
+            memo[n] = False
+            return False
+
+        return dfs(0)
