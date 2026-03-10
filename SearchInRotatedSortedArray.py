@@ -18,8 +18,9 @@
 # Input: nums = [1], target = 0
 # Output: -1
 
-# Key is to compare the middle point with the right point for the pivot point
-# If the right does not contain pivot point, then the middle point must be smaller than the right point
+# Key is compare: nums[mid] > nums[right]
+# If middle > right, then the pivot point is on the right of the middle point.
+# For finding pivot, use low < high instead of low <= high.
 from typing import List
 
 class Solution:
@@ -69,3 +70,46 @@ class Solution:
             return first
         else:
             return second + pivot
+
+# 20260309 Solution 
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # find the pivot
+        # Do two binary search
+        n = len(nums)
+
+        def findPivot():
+            low = 0 
+            high = n - 1
+
+            while low < high:
+                mid = (low + high) // 2
+                if nums[mid] > nums[high]:
+                    low = mid + 1
+                else:
+                    high = mid
+
+            return low
+
+        def binarySearch(low, high):
+            while low <= high:
+                mid = (low + high) // 2
+                if nums[mid] == target:
+                    return mid
+                elif nums[mid] > target:
+                    high = mid - 1
+                else:
+                    low = mid + 1
+
+            return -1
+
+        ndx = findPivot()
+        n1 = binarySearch(ndx, n - 1)
+        n2 = binarySearch(0, ndx - 1)
+
+        if n1 == -1 and n2 == -1:
+            return -1
+        elif n1 != -1:
+            return n1
+        else:
+            return n2
