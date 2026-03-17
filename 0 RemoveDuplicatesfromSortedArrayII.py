@@ -40,3 +40,21 @@ class Solution:
                 current += 1
 
         return current
+
+# 20260310 solution
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        # Two pointers
+        n = len(nums)
+        if n <= 2:
+            return n
+
+        current = 1
+        for ndx in range(2, n):
+            if nums[ndx] == nums[current] and nums[ndx] == nums[current - 1]:
+                continue
+            else:
+                current += 1
+                nums[current] = nums[ndx]
+
+        return current + 1
