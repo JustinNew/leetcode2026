@@ -49,6 +49,8 @@ class Solution:
         return result
 
 # Sliding window approach
+# Update the result for every front trigger
+# Update the back pointer when zero_count > k
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
         # Sliding window approach
