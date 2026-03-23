@@ -129,3 +129,34 @@ class Solution:
                     dfs(ni, nj)
         
         return number
+
+# 20260322 Solution
+# DFS 
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        count = 0
+        m = len(grid)
+        n = len(grid[0])
+
+        visited = [[False for i in range(n)] for j in range(m)]
+
+        def dfs(ni, nj):
+            if ni < 0 or ni >= m or nj < 0 or nj >= n:
+                return
+
+            if grid[ni][nj] == '1' and not visited[ni][nj]:
+                visited[ni][nj] = True
+                dfs(ni + 1, nj)
+                dfs(ni - 1, nj)
+                dfs(ni, nj + 1)
+                dfs(ni, nj - 1)
+            
+            return 
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1' and not visited[i][j]:
+                    count += 1
+                    dfs(i, j)
+
+        return count
