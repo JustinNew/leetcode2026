@@ -45,3 +45,23 @@ class Solution:
             end += 1
 
         return result
+
+# 20260325 solution
+# current = max subarray sum ending at index i
+# At each index i, two choices:
+# 1. Start a new subarray at index i
+# 2. Extend the subarray ending at index i-1
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        # Use two pointers
+        result = nums[0]
+        current = nums[0]
+        for front in range(1, len(nums)):
+            if current < 0:
+                current = nums[front]
+            else:
+                current += nums[front] 
+
+            result = max(current, result)
+
+        return result

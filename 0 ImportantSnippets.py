@@ -148,3 +148,9 @@ ord('0')
 # List assignment is not a deep copy
 # Do not use [0] * n to create a list with n zeros, use [0 for _ in range(n)] instead
 ########################################################
+
+# isInteger() and getInteger() and getList()
+if ni.isInteger():
+    ni.getInteger()
+else:
+    ni.getList()
