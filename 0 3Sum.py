@@ -14,6 +14,7 @@
 
 # Key is to use two pointers to find the two numbers that sum to the target value.
 # Sort the array first to avoid duplicates. 
+# Skip first and second repeated numbers.
 
 from typing import List
 
@@ -44,3 +45,28 @@ class Solution:
                         j += 1
         
         return res
+
+# 20260423 solution
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums = sorted(nums)
+
+        results = []
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            else:
+                left = i + 1
+                right = len(nums) - 1
+                while left < right:
+                    if nums[left] + nums[i] + nums[right] == 0:
+                        results.append([nums[i], nums[left], nums[right]])
+                        left += 1
+                        while left < len(nums) and nums[left] == nums[left - 1]:
+                            left += 1
+                    elif nums[left] + nums[i] + nums[right] > 0:
+                        right -= 1
+                    else:
+                        left += 1
+        
+        return results
