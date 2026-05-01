@@ -37,3 +37,30 @@ class Solution:
                 trapped += m - height[i] 
 
         return trapped
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l = len(height)
+        left = []
+        right = []
+
+        m = 0
+        for i in range(l):
+            if height[i] > m:
+                m = height[i]
+            left.append(m)
+
+        m = 0
+        for i in range(l - 1, -1, -1):
+            if height[i] > m:
+                m = height[i]
+            right.append(m)
+        right = right[::-1]
+
+        result = 0
+        for i in range(l):
+            t = min(left[i], right[i])
+            if t > height[i]:
+                result += t - height[i]
+
+        return result 
