@@ -58,3 +58,32 @@ class Solution:
                 alphas.add(s[front])
 
         return result
+
+# Use dictionary
+# Store the count of each character in the current substring
+# If the count of a character is greater than 1, 
+# move the end pointer until the count of that character is 1.
+# 20230604 solution
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        end = 0
+        l = len(s)
+        d = {}
+        result = 0
+
+        if l <= 1:
+            return len(s)
+
+        for front in range(l):
+            if s[front] not in d:
+                d[s[front]] = 1
+            else:
+                d[s[front]] += 1
+
+            while d[s[front]] > 1:
+                d[s[end]] -= 1
+                end += 1
+
+            result = max(result, front - end + 1)
+
+        return result
