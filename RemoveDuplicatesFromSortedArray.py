@@ -34,3 +34,20 @@ class Solution:
                 current += 1
 
         return current
+
+# 20260304 solution
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        l = len(nums)
+        if l <= 1:
+            return
+        
+        current = 0
+        for i in range(1, l):
+            if nums[i] == nums[current]:
+                continue
+            else:
+                current += 1
+                nums[current] = nums[i]
+
+        return current + 1

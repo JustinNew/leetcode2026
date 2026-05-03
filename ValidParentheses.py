@@ -50,3 +50,27 @@ class Solution:
             return True
         else:
             return False
+
+# 20260304 solution
+class Solution:
+    def isValid(self, s: str) -> bool:
+        comb = []
+        for t in s:
+            if t in ['(', '[', '{']:
+                comb.append(t)
+            else:
+                if len(comb) == 0:
+                    return False
+                elif t == ')' and comb[-1] != '(':
+                    return False
+                elif t == ']' and comb[-1] != '[':
+                    return False
+                elif t == '}' and comb[-1] != '{':
+                    return False
+                else:
+                    comb.pop()
+
+        if len(comb) >= 1:
+            return False
+        else:
+            return True
