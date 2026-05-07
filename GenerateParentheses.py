@@ -69,3 +69,27 @@ class Solution:
             number += 1
 
         return result
+
+# 20260507 Solution
+# Recursive + DFS
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        # number of ( and number of )
+        # When number of ) equals number of (, then must be ).
+
+        result = []
+        def dfs(comb, left, right):
+            if left == 0 and right == 0:
+                result.append(comb)
+
+            if left > 0:
+                dfs(comb + '(', left - 1, right)
+            
+            if right > left:
+                dfs(comb + ')', left, right - 1)
+
+            return
+        
+        dfs('', n, n)
+
+        return result
