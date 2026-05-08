@@ -10,9 +10,9 @@
 from typing import List
 
 # Key is to use a set to store the numbers in the array
-# and then to iterate through the set and check if the current number is the start of a consecutive sequence
-# if it is, then we can iterate through the set and check if the current number is in the set
-# if it is, then we can increment the length of the consecutive sequence
+# and then to iterate through the set 
+# and check if the current number is the start of a consecutive sequence
+# if it is, then we can iterate through the set and get the length of the consecutive sequence
 # and then we can return the longest consecutive sequence
 
 class Solution:
@@ -21,9 +21,11 @@ class Solution:
         longest = 0
 
         for n in num_set:
+            # Check if n is the start of a consecutive sequence
             if n - 1 not in num_set:
                 length = 1
 
+                # Find the length of the consecutive sequence starting with n
                 while n + length in num_set:
                     length += 1
                 
