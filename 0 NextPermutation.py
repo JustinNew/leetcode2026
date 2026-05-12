@@ -34,3 +34,36 @@ class Solution:
         nums[i + 1:] = reversed(nums[i + 1:])
 
         return
+
+# 20260511 Solution
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # From left to right
+        # Find the first decreasing number
+        # Exchange with the smallest number that is larger than that number
+        # Sort the rest
+
+        l = len(nums)
+        pivot = -1
+        for i in range(l - 2, -1, -1):
+            if nums[i] < nums[i + 1]:
+                pivot = i
+                break
+
+        if pivot == -1:
+            nums.sort()
+            return
+
+        change = pivot + 1
+        for i in range(pivot + 2, l):
+            if nums[i] > nums[pivot] and nums[change] > nums[i]:
+                change = i
+
+        nums[pivot], nums[change] = nums[change], nums[pivot]
+
+        nums[pivot + 1:] = sorted(nums[pivot + 1:])
+
+        return
