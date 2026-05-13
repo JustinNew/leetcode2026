@@ -52,3 +52,24 @@ class Solution:
                 return 0
             else:
                 return result
+
+# 20260512 Solution
+class Solution:
+    def reverse(self, x: int) -> int:
+        result = 0
+        flag = False
+        if x < 0:
+            flag = True
+            x = -1 * x
+
+        while x > 0:
+            result = result * 10 + x % 10
+            x = x // 10
+
+        if flag:
+            result = -1 * result
+
+        if result > 2 ** 31 - 1 or result < -1 * 2 ** 31:
+            return 0
+        else:
+            return result

@@ -65,3 +65,22 @@ class Solution:
             result = max(current, result)
 
         return result
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+
+        # At every position, need to think whether we start new subarry
+        # or, keep adding into the existing subarry
+        # If previous sum(subarray) > 0, then keep adding.
+        l = len(nums)
+        result = nums[0]
+        sub = nums[0]
+        for i in range(1, l):
+            if sub > 0:
+                sub = sub + nums[i]
+            else:
+                sub = nums[i]
+
+            result = max(result, sub)
+
+        return result
